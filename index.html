@@ -74,6 +74,29 @@
         border-radius: 10px;
       }
 
+      #ebook-grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 1.5rem;
+        padding-bottom: 1.5rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      #ebook-grid > div {
+        flex: 0 0 300px; /* Largura fixa de cada card para forçar o scroll */
+        scroll-snap-align: start;
+      }
+
+      /* Esconder a barra de scroll padrão (opcional) */
+      #ebook-grid::-webkit-scrollbar {
+        height: 8px;
+      }
+      #ebook-grid::-webkit-scrollbar-thumb {
+        background: var(--kiwi-green);
+        border-radius: 10px;
+      }
+
       @media (min-width: 768px) {
         .locked-content {
           filter: blur(12px);
