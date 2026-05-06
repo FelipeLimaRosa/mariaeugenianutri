@@ -66,6 +66,14 @@
         opacity: 0.6;
       }
 
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #8ebc32; /* kiwi-green */
+        border-radius: 10px;
+      }
+
       @media (min-width: 768px) {
         .locked-content {
           filter: blur(12px);
@@ -798,20 +806,24 @@
           const hasFile = ebook.file && ebook.file.startsWith("http");
 
           return `
-          <div class="ebook-card bg-white text-kiwi-brown rounded-3xl overflow-hidden shadow-xl flex flex-col h-full">
-            <div class="h-48 md:h-52 ${ebook.bgColor} flex items-center justify-center relative flex-shrink-0">
-              <span class="text-2xl md:text-3xl ${ebook.textColor} opacity-50 font-serif italic text-center px-4">${ebook.category}</span>
+          <div class="ebook-card bg-white text-kiwi-brown rounded-3xl overflow-hidden shadow-xl flex flex-col h-[450px]">
+            <!-- Header do Card -->
+            <div class="h-40 ${ebook.bgColor} flex items-center justify-center relative flex-shrink-0">
+              <span class="text-xl ${ebook.textColor} opacity-50 font-serif italic text-center px-4">${ebook.category}</span>
               <div class="absolute top-4 right-4 bg-kiwi text-white text-xs px-3 py-1 rounded-full font-bold">PDF</div>
             </div>
-            <div class="p-6 flex flex-col flex-grow">
-              <h3 class="text-xl font-bold mb-2">${ebook.title}</h3>
+            
+            <!-- Conteúdo com Scroll -->
+            <div class="p-6 flex flex-col flex-grow overflow-hidden">
+              <h3 class="text-xl font-bold mb-2 flex-shrink-0">${ebook.title}</h3>
               
-              <!-- AQUI ESTÁ A ALTERAÇÃO: Altura limitada com scroll -->
-              <div class="max-h-24 overflow-y-auto mb-6 pr-2 text-sm text-gray-600 custom-scrollbar">
+              <!-- ÁREA DE SCROLL -->
+              <div class="overflow-y-auto flex-grow mb-4 pr-2 text-sm text-gray-600">
                 <p>${ebook.description}</p>
               </div>
 
-              <div class="mt-auto">
+              <!-- Botão sempre no rodapé -->
+              <div class="mt-auto flex-shrink-0">
                 ${
                   isUnlocked
                     ? hasFile
