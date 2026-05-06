@@ -867,7 +867,7 @@
         const unlockContainer = document.getElementById("unlock-container");
         const successMsg = document.getElementById("access-granted-msg");
 
-        if (input.value.toUpperCase().trim() === SECRET_CODE) {
+        if (input.value.toLowerCase().trim() === SECRET_CODE) {
           isUnlocked = true;
           grid.classList.remove("locked-content");
           unlockContainer.classList.add("hidden");
